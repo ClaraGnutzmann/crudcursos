@@ -28,7 +28,7 @@ public class DataConfiguration {
 		adapter.setDatabase(Database.MYSQL);
 		adapter.setShowSql(true);
 		adapter.setGenerateDdl(true);
-		adapter.setDatabasePlatform("org.hibernate.dialect.MySQlDialect");
+		//adapter.setDatabasePlatform("org.hibernate.dialect.MySQlDialect");
 		adapter.setPrepareConnection(true);
 		return adapter;
 	}

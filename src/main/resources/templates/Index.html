@@ -10,21 +10,31 @@ xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <link rel="stylesheet" href="style/styleCss.css"/>
     
 </head>
+<header>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Lista de Eventos</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/CadastrarAula" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastar Cursos</a></li>
+      </ul>
+    </div>
+  </nav>
 
+</header>
 
 <body>
-<h1>Lista de Cursos</h1>
-<h3><a href="/CadastrarAula" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastar Cursos</a></h3>
 <table class="container">
 <thead>
-<tr>
-<th> Nome</th>
-<th> Local</th>
-<th> Data</th>
-<th> Horario</th>
-</tr>
+	<tr>
+		<th> Nome</th>
+		<th> Local</th>
+		<th> Data</th>
+		<th> Horario</th>
+		<th> Deletar</th>
+	</tr>
 </thead>
 <tbody>
 
@@ -34,6 +44,7 @@ xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 <td><span th:text="${aula.local}"></span></td>
 <td><span th:text="${aula.data}"></span></td>
 <td><span th:text="${aula.horario}"></span></td>
+<td><a class="waves-effect waves-light btn-small"th:href="${(#mvc.url('AC#deletarAula').arg(0, aula.codigo)).build()}"><i class="material-icons left">delete</i></a>
 </tr>
 
 </tbody>

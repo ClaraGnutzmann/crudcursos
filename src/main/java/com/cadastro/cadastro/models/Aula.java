@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 
 
@@ -26,9 +27,13 @@ public class Aula implements Serializable {
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
+	@NotEmpty
 	private String Nome;
+	@NotEmpty
 	private String Data;
+	@NotEmpty
 	private String Local; 
+	@NotEmpty
 	private String Horario;
 	
 	@OneToMany

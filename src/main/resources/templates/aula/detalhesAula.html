@@ -10,29 +10,59 @@ xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+           <link rel="stylesheet" href="style/styleCss.css"/>
+      
     
 </head>
 
 
 <body>
-<h1> Curso</h1>
-<h3><a href="/Aulas" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Cursos</a></h3>
-	<div th:each="aula : ${aula}" class="container">
+<header>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">AULA</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/Aulas" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Cursos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</header>
+	<div th:each="aula : ${aula}" class="container detalhesAula">
+	<h5> Detalhes da Aula</h5>
 		<div class="row">
 			<p>Nome: <span th:text="${aula.nome}"></span></p>
 			<p>Local: <span th:text="${aula.local}"></span></p>
 			<p>Data: <span th:text="${aula.data}"></span></p>
 			<p>Horario: <span th:text="${aula.horario}"></span></p>
 			
-					
+				</div>	
 		 </div>
-		<form method="post">
-		Nome: <input type="text" value="" name="nomeConvidado"/>
-		RG: <input type="text" value="" name="rg"/>
+		 <th:block th:include="mensagemValidacao"> </th:block>
+		 <div class="container formConvidado">
+		<form method="post" th:object="${convidado}">
+		Nome: <input type="text" value="" name="nomeConvidado"placeholder="Nome Completo"/>
+		RG: <input type="text" value="" name="rg" placeholder="00.000.0000" class="validate"/>
 		<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
 				</form>
-	
-	</div>
+		</div>
+	<h5>Lista de Alunos </h5>
+	<table class="container tabelaConvidado">
+		<thead>
+			<tr>
+				<th>Nome do Aluno</th>
+				<th>Rg</th>	
+				<th> Deletar</th>
+			</tr>	
+		</thead>
+		<tbody>
+		<tr  th:each="Convidado : ${convidado}">
+			<td><span th:text="${convidado.nomeConvidado" ></span></td>
+			<td><span th:text="${convidado.rg" ></span></td>		
+			<td><a class="waves-effect waves-light btn-small"th:href="${(#mvc.url('AC#deletarConvidado').arg(0, convidado.rg)).build()}"><i class="material-icons left">delete</i></a></td>
+		</tbody>
+
+	</table>
 <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
    </body>
